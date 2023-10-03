@@ -15,4 +15,8 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+// Serving JSON on a specific route
+app.get('/json', function (req, res) {
+  res.json({ message: 'Hello json' });
+});
 module.exports = app;
