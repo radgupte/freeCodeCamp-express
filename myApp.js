@@ -7,14 +7,14 @@ console.log('Hello World');
 //   res.send('Hello Express');
 // });
 
-// Serving static assets
-app.use('/public', express.static(__dirname + '/public'));
-
 //Implementing a root-level request logger middleware
 app.use((req, res, next) => {
   console.log(req.method + ' ' + req.path + ' - ' + req.ip);
   next();
 });
+
+// Serving static assets
+app.use('/public', express.static(__dirname + '/public'));
 
 // Serving an HTML file
 app.get('/', function (req, res) {
