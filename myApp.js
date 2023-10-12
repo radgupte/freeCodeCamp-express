@@ -10,6 +10,12 @@ console.log('Hello World');
 // Serving static assets
 app.use('/public', express.static(__dirname + '/public'));
 
+//Implementing a root-level request logger middleware
+app.use((req, res, next) => {
+  console.log(req.method + ' ' + req.path + ' - ' + req.ip);
+  next();
+});
+
 // Serving an HTML file
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
