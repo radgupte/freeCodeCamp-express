@@ -16,7 +16,12 @@ app.get('/', function (req, res) {
 });
 
 // Serving JSON on a specific route
+let messageObject = { message: 'Hello json' };
 app.get('/json', function (req, res) {
-  res.json({ message: 'Hello json' });
+  if (process.env.MESSAGE_STYLE === 'uppercase') {
+    return res.json(JSON.parse(JSON.stringify(messageObject)).toUpperCase());
+  } else {
+    return res.json(messageObject);
+  }
 });
 module.exports = app;
