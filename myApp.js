@@ -8,10 +8,22 @@ console.log('Hello World');
 // });
 
 //Implementing a root-level request logger middleware
-app.use((req, res, next) => {
-  console.log(req.method + ' ' + req.path + ' - ' + req.ip);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.method + ' ' + req.path + ' - ' + req.ip);
+//   next();
+// });
+
+// Chain middleware to create a Time Server
+app.get(
+  '/now',
+  (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    res.json({ time: req.time });
+  }
+);
 
 // Serving static assets
 app.use('/public', express.static(__dirname + '/public'));
