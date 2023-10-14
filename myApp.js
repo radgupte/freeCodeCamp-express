@@ -37,11 +37,17 @@ app.get('/:word/echo', (req, res) => {
 });
 
 // Getting query parameter input from the client
-app.route('/name').get((req, res) => {
-  var firstname = req.query.first;
-  var lastname = req.query.last;
-  res.json({ name: `${firstname} ${lastname}` });
-});
+app
+  .route('/name')
+  .get((req, res) => {
+    var firstname = req.query.first;
+    var lastname = req.query.last;
+    res.json({ name: `${firstname} ${lastname}` });
+  })
+  .post((req, res) => {
+    var inputName = req.body.first + ' ' + req.body.last;
+    res.json({ name: inputName });
+  });
 
 // Serving static assets
 app.use('/public', express.static(__dirname + '/public'));
