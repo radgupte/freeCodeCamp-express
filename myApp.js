@@ -27,7 +27,7 @@ app.get(
 
 // Getting route parameter input from the client
 app.get('/:word/echo', (req, res) => {
-  const { word } = req.params;
+  var { word } = req.params;
   res.json({ echo: word });
 });
 
