@@ -35,7 +35,7 @@ app.get('/:word/echo', (req, res) => {
 app.get('/name', (req, res) => {
   var firstname = req.query.first;
   var lastname = req.query.last;
-  res.json({ name: firstname + ' ' + lastname });
+  res.json({ name: `${firstname} ${lastname}` });
 });
 
 // Serving static assets
