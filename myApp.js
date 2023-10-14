@@ -1,6 +1,8 @@
 let express = require('express');
 let app = express();
-console.log('Hello World');
+
+let bodyParser = require('body-parser');
+// console.log('Hello World');
 
 // Serving a string
 // app.get('/', function (req, res) {
@@ -12,6 +14,9 @@ console.log('Hello World');
 //   console.log(req.method + ' ' + req.path + ' - ' + req.ip);
 //   next();
 // });
+
+// Using body-parser to parse POST requests
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Chain middleware to create a Time Server
 app.get(
@@ -32,7 +37,7 @@ app.get('/:word/echo', (req, res) => {
 });
 
 // Getting query parameter input from the client
-app.get('/name', (req, res) => {
+app.route('/name').get((req, res) => {
   var firstname = req.query.first;
   var lastname = req.query.last;
   res.json({ name: `${firstname} ${lastname}` });
