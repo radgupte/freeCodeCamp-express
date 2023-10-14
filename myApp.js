@@ -25,6 +25,12 @@ app.get(
   }
 );
 
+// Getting route parameter input from the client
+app.get('/:word/echo', (req, res) => {
+  const word = req.params.word;
+  res.json({ echo: word });
+});
+
 // Serving static assets
 app.use('/public', express.static(__dirname + '/public'));
 
